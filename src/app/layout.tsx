@@ -1,5 +1,5 @@
-import { geistMono, geistSans } from '@/app/fonts';
-import '@/app/globals.css';
+import { geistMono, geistSans } from '@/fonts';
+import '@/globals.css';
 import type { Metadata } from 'next';
 
 /**
