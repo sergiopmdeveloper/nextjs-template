@@ -1,3 +1,6 @@
+'use client';
+
+import { signIn } from '@/actions/auth';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -9,12 +12,19 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
+import { Loader } from 'lucide-react';
 import Link from 'next/link';
+import { useActionState, useState } from 'react';
 
 /**
  * Sign in page.
  */
 export default function SignIn() {
+  const [state, action, pending] = useActionState(signIn, undefined);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <main>
       <section className="flex h-screen w-full items-center justify-center">
@@ -30,22 +40,53 @@ export default function SignIn() {
           </CardHeader>
 
           <CardContent>
-            <form className="font-mono" id="sign-in-form">
+            <form className="font-mono" id="sign-in-form" action={action}>
               <div className="space-y-4">
                 <div className="space-y-1">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" name="email" autoComplete="email" />
+
+                  <Input
+                    className={cn({
+                      'border-destructive focus-visible:ring-0':
+                        state?.errors?.email,
+                    })}
+                    id="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    autoComplete="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+
+                  {state?.errors?.email && (
+                    <p className="text-xs text-destructive">
+                      {state.errors.email[0]}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-1">
                   <Label htmlFor="password">Password</Label>
 
                   <Input
+                    className={cn({
+                      'border-destructive focus-visible:ring-0':
+                        state?.errors?.password,
+                    })}
                     id="password"
                     name="password"
                     type="password"
+                    placeholder="·········"
                     autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
+
+                  {state?.errors?.password && (
+                    <p className="text-xs text-destructive">
+                      {state.errors.password[0]}
+                    </p>
+                  )}
                 </div>
 
                 <p className="font-sans text-sm">
@@ -59,8 +100,13 @@ export default function SignIn() {
           </CardContent>
 
           <CardFooter>
-            <Button className="w-full font-mono" form="sign-in-form">
+            <Button
+              className="w-full font-mono"
+              form="sign-in-form"
+              disabled={pending}
+            >
               Send
+              {pending && <Loader className="animate-spin" size={16} />}
             </Button>
           </CardFooter>
         </Card>
