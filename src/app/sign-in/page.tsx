@@ -1,6 +1,7 @@
 'use client';
 
 import { signIn } from '@/actions/auth';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -28,7 +29,7 @@ export default function SignIn() {
   return (
     <main>
       <section className="flex h-screen w-full items-center justify-center">
-        <Card className="w-[30rem]">
+        <Card className="relative w-[30rem]">
           <CardHeader>
             <CardTitle className="font-mono text-4xl font-bold">
               Sign in
@@ -109,6 +110,15 @@ export default function SignIn() {
               {pending && <Loader className="animate-spin" size={16} />}
             </Button>
           </CardFooter>
+
+          {state?.invalidCredentials && (
+            <Badge
+              className="absolute -top-8 right-0 font-mono hover:bg-destructive"
+              variant="destructive"
+            >
+              Invalid email or password
+            </Badge>
+          )}
         </Card>
       </section>
     </main>
