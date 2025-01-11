@@ -1,8 +1,11 @@
 'use server';
 
 import { signInFormSchema, type SignInFormState } from '@/schemas/auth';
+import { generateJwt, sessionCookie } from '@/utils/auth';
 import db from '@/utils/prisma';
 import argon2 from 'argon2';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 /**
  * Signs the user in.
@@ -37,5 +40,21 @@ export async function signIn(
     };
   }
 
-  return {};
+  const token = await generateJwt();
+
+  const session = await db.session.create({
+    data: {
+      userId: user.id,
+      token,
+    },
+  });
+
+  const cookieStore = await cookies();
+
+  cookieStore.set(sessionCookie.name, session.id, {
+    ...sessionCookie.options,
+    expires: new Date(Date.now() + sessionCookie.duration),
+  });
+
+  redirect('/account');
 }
