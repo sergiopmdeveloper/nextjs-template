@@ -1,11 +1,9 @@
 'use server';
 
-import { signInFormSchema, type SignInFormState } from '@/app/_schemas/auth';
-import { generateJwt, sessionCookie } from '@/app/_utils/auth';
-import db from '@/app/_utils/prisma';
-import argon2 from 'argon2';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { getUserByEmail } from '@/app/_data/user';
+import { signInFormSchema } from '@/app/_schemas/auth';
+import { type SignInFormState } from '@/app/_types/auth';
+import { authenticateUser, verifyUserPassword } from '@/app/_utils/auth';
 
 /**
  * Signs the user in.
@@ -30,31 +28,13 @@ export async function signIn(
 
   const { email, password } = validatedFields.data;
 
-  const user = await db.user.findUnique({
-    where: { email },
-  });
+  const user = await getUserByEmail(email);
 
-  if (!user || !(await argon2.verify(user.password, password))) {
+  if (!user || !(await verifyUserPassword(user, password))) {
     return {
       invalidCredentials: true,
     };
   }
 
-  const token = await generateJwt();
-
-  const session = await db.session.create({
-    data: {
-      userId: user.id,
-      token,
-    },
-  });
-
-  const cookieStore = await cookies();
-
-  cookieStore.set(sessionCookie.name, session.id, {
-    ...sessionCookie.options,
-    expires: new Date(Date.now() + sessionCookie.duration),
-  });
-
-  redirect('/account');
+  await authenticateUser(user.id);
 }
