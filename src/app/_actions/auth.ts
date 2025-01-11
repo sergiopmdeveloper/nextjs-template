@@ -1,8 +1,8 @@
 'use server';
 
-import { signInFormSchema, type SignInFormState } from '@/schemas/auth';
-import { generateJwt, sessionCookie } from '@/utils/auth';
-import db from '@/utils/prisma';
+import { signInFormSchema, type SignInFormState } from '@/app/_schemas/auth';
+import { generateJwt, sessionCookie } from '@/app/_utils/auth';
+import db from '@/app/_utils/prisma';
 import argon2 from 'argon2';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
