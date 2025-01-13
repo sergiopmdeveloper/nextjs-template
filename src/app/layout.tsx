@@ -1,3 +1,5 @@
+import { ProtectedSidebar } from '@/components/app/app-sidebar';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { geistMono, geistSans } from '@/fonts';
 import '@/globals.css';
 import type { Metadata } from 'next';
@@ -24,7 +26,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <SidebarProvider defaultOpen={false}>
+          <ProtectedSidebar />
+          <SidebarTrigger />
+          {children}
+        </SidebarProvider>
       </body>
     </html>
   );
