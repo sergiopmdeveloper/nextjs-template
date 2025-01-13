@@ -19,3 +19,18 @@ export async function createSession(userId: string): Promise<Session> {
 
   return session;
 }
+
+/**
+ * Gets a session via their ID.
+ * @param {string} sessionId - The ID of the session.
+ * @returns {Promise<Session | null>} The user if exists or null.
+ */
+export async function getSessionById(
+  sessionId: string
+): Promise<Session | null> {
+  return await db.session.findUnique({
+    where: {
+      id: sessionId,
+    },
+  });
+}
