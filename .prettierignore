@@ -1,2 +1,5 @@
 # UI components
 src/components/ui
+
+# UI component hooks
+src/hooks
