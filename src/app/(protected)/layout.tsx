@@ -1,7 +1,7 @@
 'use client';
 
 import { signOut } from '@/app/_features/auth/actions';
-import { ProtectedSidebar } from '@/app/_features/base/components/app-sidebar';
+import { ProtectedSidebar } from '@/app/_features/base/components/protected-sidebar';
 import { ThemeToggle } from '@/app/_features/base/components/theme-toggle';
 import { Button } from '@/app/_ui/components/button';
 import { SidebarProvider, SidebarTrigger } from '@/app/_ui/components/sidebar';
