@@ -1,5 +1,5 @@
-import { KEY, SESSION_ID_COOKIE } from '@/app/_constants/auth';
 import { createSession } from '@/app/_data/session';
+import { KEY, SESSION_ID_COOKIE } from '@/app/_features/auth/constants';
 import type { User } from '@prisma/client';
 import argon2 from 'argon2';
 import { SignJWT } from 'jose';

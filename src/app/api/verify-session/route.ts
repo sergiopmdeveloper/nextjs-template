@@ -1,5 +1,5 @@
-import { KEY, SESSION_ID_COOKIE } from '@/app/_constants/auth';
 import { getSessionById } from '@/app/_data/session';
+import { KEY, SESSION_ID_COOKIE } from '@/app/_features/auth/constants';
 import { jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 

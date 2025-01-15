@@ -2,7 +2,7 @@ import {
   AUTH_PATHS,
   PROTECTED_PATHS,
   SESSION_ID_COOKIE,
-} from '@/app/_constants/auth';
+} from '@/app/_features/auth/constants';
 import { NextResponse, type NextRequest } from 'next/server';
 
 /**

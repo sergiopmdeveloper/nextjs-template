@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn } from '@/app/_actions/auth';
+import { signIn } from '@/app/_features/auth/actions';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {

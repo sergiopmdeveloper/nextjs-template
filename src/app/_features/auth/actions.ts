@@ -1,9 +1,12 @@
 'use server';
 
 import { getUserByEmail } from '@/app/_data/user';
-import { signInFormSchema } from '@/app/_schemas/auth';
-import { type SignInFormState } from '@/app/_types/auth';
-import { authenticateUser, verifyUserPassword } from '@/app/_utils/auth';
+import { signInFormSchema } from '@/app/_features/auth/schemas';
+import { type SignInFormState } from '@/app/_features/auth/types';
+import {
+  authenticateUser,
+  verifyUserPassword,
+} from '@/app/_features/auth/utils';
 
 /**
  * Signs the user in.
