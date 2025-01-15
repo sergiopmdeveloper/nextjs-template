@@ -2,6 +2,7 @@
 
 import { signOut } from '@/app/_features/auth/actions';
 import { ProtectedSidebar } from '@/components/app/app-sidebar';
+import { ThemeToggle } from '@/components/app/theme-toggle';
 import { Button } from '@/components/ui/button';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { Loader } from 'lucide-react';
@@ -28,16 +29,20 @@ export default function ProtectedLayout({
             <h1 className="font-mono text-2xl font-bold">Logo</h1>
           </div>
 
-          <form action={action}>
-            <Button
-              className="font-mono"
-              variant="destructive"
-              disabled={pending}
-            >
-              Sign out
-              {pending && <Loader className="animate-spin" size={16} />}
-            </Button>
-          </form>
+          <div className="flex items-center space-x-1">
+            <form action={action}>
+              <Button
+                className="font-mono"
+                variant="destructive"
+                disabled={pending}
+              >
+                Sign out
+                {pending && <Loader className="animate-spin" size={16} />}
+              </Button>
+            </form>
+
+            <ThemeToggle />
+          </div>
         </header>
 
         {children}

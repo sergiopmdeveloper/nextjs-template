@@ -1,5 +1,6 @@
 import { geistMono, geistSans } from '@/fonts';
 import '@/globals.css';
+import { ThemeProvider } from '@/providers/theme-provider';
 import type { Metadata } from 'next';
 
 /**
@@ -24,7 +25,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
