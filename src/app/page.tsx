@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/_ui/components/button';
 
 /**
  * Home page.

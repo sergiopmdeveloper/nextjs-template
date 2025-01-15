@@ -1,5 +1,5 @@
 # UI components
-src/components/ui
+src/app/_ui/components
 
 # UI component hooks
-src/hooks
+src/app/_ui/hooks

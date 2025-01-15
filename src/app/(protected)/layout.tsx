@@ -1,10 +1,10 @@
 'use client';
 
 import { signOut } from '@/app/_features/auth/actions';
-import { ProtectedSidebar } from '@/components/app/app-sidebar';
-import { ThemeToggle } from '@/components/app/theme-toggle';
-import { Button } from '@/components/ui/button';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { ProtectedSidebar } from '@/app/_features/base/components/app-sidebar';
+import { ThemeToggle } from '@/app/_features/base/components/theme-toggle';
+import { Button } from '@/app/_ui/components/button';
+import { SidebarProvider, SidebarTrigger } from '@/app/_ui/components/sidebar';
 import { Loader } from 'lucide-react';
 import { useActionState } from 'react';
 

@@ -1,6 +1,6 @@
+import { ThemeProvider } from '@/app/_features/base/providers/theme-provider';
 import { geistMono, geistSans } from '@/fonts';
 import '@/globals.css';
-import { ThemeProvider } from '@/providers/theme-provider';
 import type { Metadata } from 'next';
 
 /**

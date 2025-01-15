@@ -1,5 +1,5 @@
 import { generateToken } from '@/app/_features/auth/utils';
-import db from '@/app/_features/base/db';
+import db from '@/app/_features/prisma/db';
 import type { Session } from '@prisma/client';
 
 /**

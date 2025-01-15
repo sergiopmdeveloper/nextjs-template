@@ -9,8 +9,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { cn } from '@/lib/utils';
+} from '@/app/_ui/components/sidebar';
+import { cn } from '@/app/_ui/lib/utils';
 import { User } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

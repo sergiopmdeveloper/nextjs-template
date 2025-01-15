@@ -1,8 +1,8 @@
 'use client';
 
 import { signIn } from '@/app/_features/auth/actions';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from '@/app/_ui/components/badge';
+import { Button } from '@/app/_ui/components/button';
 import {
   Card,
   CardContent,
@@ -10,10 +10,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/utils';
+} from '@/app/_ui/components/card';
+import { Input } from '@/app/_ui/components/input';
+import { Label } from '@/app/_ui/components/label';
+import { cn } from '@/app/_ui/lib/utils';
 import { Loader } from 'lucide-react';
 import Link from 'next/link';
 import { useActionState, useState } from 'react';
