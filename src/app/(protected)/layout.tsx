@@ -1,6 +1,11 @@
+'use client';
+
+import { signOut } from '@/app/_features/auth/actions';
 import { ProtectedSidebar } from '@/components/app/app-sidebar';
 import { Button } from '@/components/ui/button';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { Loader } from 'lucide-react';
+import { useActionState } from 'react';
 
 /**
  * Protected layout.
@@ -10,6 +15,8 @@ export default function ProtectedLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [_, action, pending] = useActionState(signOut, undefined);
+
   return (
     <SidebarProvider>
       <ProtectedSidebar />
@@ -21,11 +28,16 @@ export default function ProtectedLayout({
             <h1 className="font-mono text-2xl font-bold">Logo</h1>
           </div>
 
-          <div>
-            <Button className="font-mono" variant="destructive">
+          <form action={action}>
+            <Button
+              className="font-mono"
+              variant="destructive"
+              disabled={pending}
+            >
               Sign out
+              {pending && <Loader className="animate-spin" size={16} />}
             </Button>
-          </div>
+          </form>
         </header>
 
         {children}

@@ -51,3 +51,15 @@ export async function authenticateUser(userId: string): Promise<never> {
 
   redirect('/account');
 }
+
+/**
+ * Destroys the existing session and redirects to the sign in page.
+ * @returns {Promise<Never>} - The redirection to sign in page.
+ */
+export async function destroySession(): Promise<never> {
+  const cookieStore = await cookies();
+
+  cookieStore.delete(SESSION_ID_COOKIE.name);
+
+  redirect('/sign-in');
+}
